@@ -53,6 +53,27 @@ def find_users_by_tags(input_tags_lst, top_N = 6,
     
     return top_users_ids
 
+#4
+def projects_trough_tags(tag_lst, 
+                         top_N, 
+                         project_csv_file="projects.csv", 
+                         project_tags_file="project_tags.json"):
+    
+    projects = pd.read_csv(project_csv_file)
+    projects = projects.rename(columns={"Unnamed: 0": "project_id"})
+    
+    with open(project_tags_file) as f:
+        project_tags = json.load(f)
+
+    project_lst  = np.zeros(26)
+
+    for tag in tag_lst:
+        for project_id in range(26):
+            if tag in project_tags[str(project_id)]:
+                project_lst[project_id] += 1
+
+    # return project_ids
+    return np.argsort(-project_lst)[:top_N]
 
 #7
 def get_user_info_by_id(user_id,
