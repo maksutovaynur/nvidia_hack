@@ -1,8 +1,11 @@
 import telebot
-from telebot.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from telebot.types import Message, InlineKeyboardButton
+
 from . import settings as S
-from .functions import FakeFunctions
-from .commands import Callbacks, Commands
+from .commands import CallbackNames, CommandNames
+from .commands.common import cmd_help
+from .commands.tags import resp_add_tag, resp_rm_tag, \
+    cmd_create_search_tags, resp_search_projects, resp_search_people
 
 log = print
 
@@ -14,28 +17,48 @@ def root(message: Message):
     log("root handler")
     chat_id = message.from_user.id
     t = message.text
-    if t == Commands.SEARCH_PERSON:
-        kb = InlineKeyboardMarkup(row_width=5)
-        tags = FakeFunctions.get_skill_tags()
-        for tag in tags:
-            kb.add(InlineKeyboardButton(text=tag, callback_data=f"/addtag {tag}"))
-        bot.send_message(chat_id, text="Add skill:", reply_markup=kb)
-
-    elif t == Commands.SEARCH_PROJECT:
-        pass
-    elif t == Commands.APPOINT_LUNCH:
-        pass
-    elif t == Commands.HELP:
-        bot.send_message(
-            text="\n".join(f"{cmd}" for cmd in Commands.__dict__().values())
+    if t == CommandNames.SEARCH_PERSON.value:
+        cmd_create_search_tags(
+            bot,
+            chat_id,
+            selected_head="Search person with skills",
+            all_head="Add skill",
+            add_key=InlineKeyboardButton(
+                text="👤🔎 Search people",
+                callback_data=CallbackNames.SEARCH_PERSON.value
+            )
         )
-    else:
+    elif t == CommandNames.SEARCH_PROJECT.value:
+        cmd_create_search_tags(
+            bot,
+            chat_id,
+            selected_head="Search project by tech",
+            all_head="Add tag",
+            add_key=InlineKeyboardButton(
+                text="📂🔎 Search projects",
+                callback_data=CallbackNames.SEARCH_PROJECT.value
+            )
+        )
+    elif t == CommandNames.RANDOM_MEET.value:
         pass
+    elif t == CommandNames.HELP.value:
+        cmd_help(chat_id, bot)
+    else:
+        cmd_help(chat_id, bot)
 
 
-@bot.callback_query_handler(lambda query: query.data.startswith(Callbacks.ADD_TAG))
-def process_add_tag(query: CallbackQuery):
-    print(query.message.id)
+bot.callback_query_handler(
+    lambda query: query.data.startswith(CallbackNames.ADD_TAG.value),
+)(resp_add_tag(bot))
 
+bot.callback_query_handler(
+    lambda query: query.data.startswith(CallbackNames.RM_TAG.value)
+)(resp_rm_tag(bot))
 
+bot.callback_query_handler(
+    lambda query: query.data.startswith(CallbackNames.SEARCH_PERSON.value)
+)(resp_search_people(bot))
 
+bot.callback_query_handler(
+    lambda query: query.data.startswith(CallbackNames.SEARCH_PROJECT.value)
+)(resp_search_projects(bot))
