@@ -10,3 +10,7 @@ class FakeFunctions:
     @classmethod
     def get_projects_by_tags(cls, tags):
         return ["Project 1", "Project 2", "Project 3"]
+
+    @classmethod
+    def get_random_person(cls):
+        return "Rodrigo"

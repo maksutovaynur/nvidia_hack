@@ -75,10 +75,9 @@ def resp_search_people(bot):
         msg: Message = query.message.reply_to_message
         head, initial_tags = extract_head_tags(msg.text)
         people = FakeFunctions.get_people_by_skills(initial_tags)
-        bot.send_message(
-            msg.chat.id,
-            text="Found people:\n" + "\n".join(people)
-        )
+        bot.send_message(msg.chat.id, text="Found people:")
+        for person in people:
+            bot.send_message(msg.chat.id, text=person)
     return f
 
 
@@ -87,10 +86,9 @@ def resp_search_projects(bot):
         msg: Message = query.message.reply_to_message
         head, initial_tags = extract_head_tags(msg.text)
         projects = FakeFunctions.get_projects_by_tags(initial_tags)
-        bot.send_message(
-            msg.chat.id,
-            text="Found projects:\n" + "\n".join(projects)
-        )
+        bot.send_message(msg.chat.id, text="Found projects:")
+        for project in projects:
+            bot.send_message(msg.chat.id, text=project)
     return f
 
 

@@ -6,6 +6,7 @@ from .commands import CallbackNames, CommandNames
 from .commands.common import cmd_help
 from .commands.tags import resp_add_tag, resp_rm_tag, \
     cmd_create_search_tags, resp_search_projects, resp_search_people
+from .commands.person_card import cmd_get_random_person
 
 log = print
 
@@ -17,7 +18,13 @@ def root(message: Message):
     log("root handler")
     chat_id = message.from_user.id
     t = message.text
-    if t == CommandNames.SEARCH_PERSON.value:
+    if t == "/start":
+        bot.send_message(
+            chat_id,
+            text="Welcome to Nvidia Tinder"
+        )
+        cmd_help(bot, chat_id)
+    elif t == CommandNames.SEARCH_PERSON.value:
         cmd_create_search_tags(
             bot,
             chat_id,
@@ -39,12 +46,12 @@ def root(message: Message):
                 callback_data=CallbackNames.SEARCH_PROJECT.value
             )
         )
-    elif t == CommandNames.RANDOM_MEET.value:
-        pass
+    elif t == CommandNames.RANDOM_LUNCH.value:
+        cmd_get_random_person(bot, chat_id)
     elif t == CommandNames.HELP.value:
-        cmd_help(chat_id, bot)
+        cmd_help(bot, chat_id)
     else:
-        cmd_help(chat_id, bot)
+        cmd_help(bot, chat_id)
 
 
 bot.callback_query_handler(

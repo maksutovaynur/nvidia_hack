@@ -1,21 +1,30 @@
 from telebot import TeleBot
+from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from . import CommandNames
 
 
 HelpMessages = {
-    CommandNames.SEARCH_PERSON.value: "Найти подходящих вам людей",
-    CommandNames.SEARCH_PROJECT.value: "Найти интересные проекты",
-    CommandNames.RANDOM_MEET.value: "Побеседовать со случайным человеком",
-    CommandNames.HELP.value: "Показать это сообщение",
+    CommandNames.SEARCH_PERSON.value: "🔎 Find suitable people 👤",
+    CommandNames.SEARCH_PROJECT.value: "🔎 Find interesting projects 📂",
+    CommandNames.RANDOM_LUNCH.value: "🤔 Have a lunch with random person?",
+    CommandNames.HELP.value: "Show this help message again",
 }
 
 
-def cmd_help(chat_id, bot: TeleBot):
+help_text = "\n".join(
+    f"{cmd.value} - {HelpMessages.get(cmd.value, '...')}"
+    for cmd in CommandNames
+    if not cmd.value.startswith("_")
+)
+
+
+km = ReplyKeyboardMarkup(row_width=1)
+km.add(*(KeyboardButton(cmd.value) for cmd in CommandNames))
+
+
+def cmd_help(bot: TeleBot, chat_id):
     bot.send_message(
         chat_id,
-        text="\n".join(
-            f"{cmd.value} - {HelpMessages.get(cmd.value, '...')}"
-            for cmd in CommandNames
-            if not cmd.value.startswith("_")
-        )
+        text=help_text,
+        reply_markup=km
     )

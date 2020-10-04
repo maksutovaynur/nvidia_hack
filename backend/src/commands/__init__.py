@@ -4,7 +4,7 @@ import enum
 class CommandNames(enum.Enum):
     SEARCH_PERSON = "/search_person"
     SEARCH_PROJECT = "/search_project"
-    RANDOM_MEET = "/random_meet"
+    RANDOM_LUNCH = "/random_lunch"
     HELP = "/help"
 
 
