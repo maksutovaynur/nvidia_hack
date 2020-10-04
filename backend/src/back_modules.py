@@ -2,6 +2,7 @@ import json
 import numpy as np
 import pandas as pd
 import os
+from time import time
 import random
 from . import settings as S
 
@@ -46,7 +47,7 @@ def find_user_ids_by_tags(input_tags_lst, top_N=3):
     top_users_ids = np.argsort(-users_scores)[:top_N]
     
     if sum(users_scores) == 0:
-        np.random.seed(ord(input_tags_lst[0][2]) + 42)
+        np.random.seed(int(time()) + 42)
         top_users_ids = np.random.choice(np.arange(person_df.shape[0]), size=top_N)
     
     return top_users_ids
