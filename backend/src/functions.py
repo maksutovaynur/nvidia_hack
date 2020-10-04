@@ -14,3 +14,4 @@ class FakeFunctions:
     @classmethod
     def get_random_person(cls):
         return "Rodrigo"
+

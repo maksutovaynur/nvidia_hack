@@ -7,3 +7,9 @@ env.read_env(join(SRC_DIR, ".env"))
 
 BOT_TOKEN = env.str("BOT_TOKEN")
 
+PERSON_DF_PATH = join(SRC_DIR, "person.csv")
+PERSON_SKILL_PATH = join(SRC_DIR, "person_skills.json")
+
+PROJECT_DF_PATH = join(SRC_DIR, "projects.csv")
+PROJECT_TAG_PATH = join(SRC_DIR, "project_tags.json")
+
