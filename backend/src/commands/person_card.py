@@ -2,7 +2,6 @@ from telebot.types import CallbackQuery, Message
 
 from .tags import extract_head_tags
 from ..functions import FakeFunctions
-from ..back_modules import find_users_by_tags
 
 
 def cmd_get_random_person(bot, chat_id):

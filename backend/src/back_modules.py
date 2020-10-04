@@ -75,6 +75,7 @@ def projects_trough_tags(tag_lst,
     # return project_ids
     return np.argsort(-project_lst)[:top_N]
 
+
 #7
 def get_user_info_by_id(user_id,
                         person_df_path='./person.csv',
