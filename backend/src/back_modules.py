@@ -31,7 +31,7 @@ def find_user_ids_by_tags(input_tags_lst, top_N = 6):
     users_scores = np.zeros(person_df.shape[0])
 
     for user_id in person_df['person_id'].values:
-            user_skills = project_tags_json[str(user_id)]
+            user_skills = person_skills_json[str(user_id)]
             for skill in input_tags_lst:
                 if skill in user_skills:
                     users_scores[user_id] += 1
