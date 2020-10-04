@@ -30,8 +30,9 @@ def put_text(head, tags):
 
 
 def tags_reply_markup(tags, txt_f=lambda t: t, clb_f=lambda t: t):
-    kb = InlineKeyboardMarkup()
-    kb.add(*(InlineKeyboardButton(text=txt_f(tag), callback_data=clb_f(tag)) for tag in tags))
+    kb = InlineKeyboardMarkup(row_width=3)
+    kb.add(*(InlineKeyboardButton(
+        text=txt_f(tag), callback_data=clb_f(tag)) for tag in tags))
     return kb
 
 

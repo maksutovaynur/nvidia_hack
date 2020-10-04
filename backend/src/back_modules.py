@@ -1,23 +1,24 @@
 import json
 import numpy as np
 import pandas as pd
+from random import choice
 from . import settings as S
 
 
 person_df = pd.read_csv(S.PERSON_DF_PATH)
 person_skills_json = json.load(open(S.PERSON_SKILL_PATH, "r"))
-all_skills = sorted(set(sum(person_skills_json, [])))
+all_skills = sorted(set(sum(person_skills_json.values(), [])))
 
 project_df = pd.read_csv(S.PROJECT_DF_PATH).rename(columns={"Unnamed: 0": "project_id"})
 project_tags_json = json.load(open(S.PROJECT_TAG_PATH, "r"))
-all_tags = sorted(set(sum(project_tags_json, [])))
+all_tags = sorted(set(sum(project_tags_json.values(), [])))
 
-print(person_df.head())
-print(project_df.head())
+print(person_df.columns)
+print(project_df.columns)
 
 #1
-def get_all_users_tags():
-    return all_skills
+def get_all_users_tags(max_len=20):
+    return sorted(np.random.permutation(all_skills)[:max_len])
 
 
 #2
@@ -58,15 +59,15 @@ def find_projects_through_tags(tag_lst, top_N):
 #7
 def get_user_info_by_id(user_id):
     row = person_df.iloc[user_id].values
-    user_dct = {}
-    user_dct['user_id'] = row[0]
-    user_dct['full_name'] = row[1]
-    user_dct['gender'] = row[2]
-    user_dct['photo_path'] = row[3]
-    user_dct['telegram_nickname'] = row[4]
-    user_dct['position'] = row[5]
-    user_dct['github_nickname'] = row[6]
-    user_dct['email'] = row[7]
+    user_dct = row.to_dict() #{}
+    # user_dct['user_id'] = row[0]
+    # user_dct['full_name'] = row[1]
+    # user_dct['gender'] = row[2]
+    # user_dct['photo_path'] = row[3]
+    # user_dct['telegram_nickname'] = row[4]
+    # user_dct['position'] = row[5]
+    # user_dct['github_nickname'] = row[6]
+    # user_dct['email'] = row[7]
     user_dct['skills_tags'] = person_skills_json[str(user_id)]
     return user_dct
 
