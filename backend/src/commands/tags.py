@@ -1,8 +1,6 @@
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery
 
 from src.commands import CallbackNames
-from ..functions import FakeFunctions
-
 
 
 def extract_head_tags(text):
