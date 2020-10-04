@@ -5,9 +5,10 @@ from . import settings as S
 from .commands import CallbackNames, CommandNames
 from .commands.common import cmd_help
 from .commands.tags import resp_add_tag, resp_rm_tag, \
-    cmd_create_search_tags, resp_search_projects, resp_search_people
-from .commands.person_card import cmd_get_random_person
+    cmd_create_search_tags
+from .commands.person_card import cmd_get_random_person, resp_search_people, resp_search_projects
 
+from .back_modules import get_all_users_tags, get_all_projects_tags
 log = print
 
 bot = telebot.TeleBot(S.BOT_TOKEN)
@@ -30,6 +31,7 @@ def root(message: Message):
             chat_id,
             selected_head="Search person with skills",
             all_head="Add skill",
+            tags=get_all_users_tags(),
             add_key=InlineKeyboardButton(
                 text="👤🔎 Search people",
                 callback_data=CallbackNames.SEARCH_PERSON.value
@@ -41,6 +43,7 @@ def root(message: Message):
             chat_id,
             selected_head="Search project by tech",
             all_head="Add tag",
+            tags=get_all_projects_tags(),
             add_key=InlineKeyboardButton(
                 text="📂🔎 Search projects",
                 callback_data=CallbackNames.SEARCH_PROJECT.value

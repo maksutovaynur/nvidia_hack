@@ -4,6 +4,7 @@ from src.commands import CallbackNames
 from ..functions import FakeFunctions
 
 
+
 def extract_head_tags(text):
     head, tags = text.split(":", 1)
     return head, clean_tags(tags.split(", "))
@@ -70,31 +71,8 @@ def resp_rm_tag(bot):
     return f
 
 
-def resp_search_people(bot):
-    def f(query: CallbackQuery):
-        msg: Message = query.message.reply_to_message
-        head, initial_tags = extract_head_tags(msg.text)
-        people = FakeFunctions.get_people_by_skills(initial_tags)
-        bot.send_message(msg.chat.id, text="Found people:")
-        for person in people:
-            bot.send_message(msg.chat.id, text=person)
-    return f
-
-
-def resp_search_projects(bot):
-    def f(query: CallbackQuery):
-        msg: Message = query.message.reply_to_message
-        head, initial_tags = extract_head_tags(msg.text)
-        projects = FakeFunctions.get_projects_by_tags(initial_tags)
-        bot.send_message(msg.chat.id, text="Found projects:")
-        for project in projects:
-            bot.send_message(msg.chat.id, text=project)
-    return f
-
-
-def cmd_create_search_tags(bot, chat_id, selected_head, all_head, add_key=None):
+def cmd_create_search_tags(bot, chat_id, tags, selected_head, all_head, add_key=None):
     msg = bot.send_message(chat_id, text=f"{selected_head}: ")
-    tags = FakeFunctions.get_skill_tags()
     kb = tags_reply_markup(tags, clb_f=lambda t: f"{CallbackNames.ADD_TAG.value} {t}")
     if add_key is not None:
         kb.add(add_key)
