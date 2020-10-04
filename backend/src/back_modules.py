@@ -1,6 +1,7 @@
 import json
 import numpy as np
 import pandas as pd
+import os
 from . import settings as S
 
 
@@ -12,8 +13,9 @@ project_df = pd.read_csv(S.PROJECT_DF_PATH).rename(columns={"Unnamed: 0": "proje
 project_tags_json = json.load(open(S.PROJECT_TAG_PATH, "r"))
 all_tags = sorted(set(sum(project_tags_json.values(), [])))
 
-print(person_df.columns)
-print(project_df.columns)
+
+img_file_names = [i.strip() for i in os.popen(f"find {S.IMG_DIR}").read().split("\n") if i.endswith("jpeg")]
+print(img_file_names)
 
 #1
 def get_all_users_tags(max_len=20):
@@ -66,10 +68,11 @@ def get_user_info_by_id(user_id):
 def serialize_user(user):
     if user["github_nick"][0] == '@':
         user["github_nick"] = user["github_nick"][1:]
-    return "{full_name}\n" \
-        "Telegram: {tg_nick}\n" \
-        "Github: https://github.com/{github_nick}\n" \
-           "Email: {email}".format(**user)
+    return "<b>{full_name}</b>\n" \
+           "<i>{person_position}</i>\n" \
+           "<a href='/{tg_nick}'>Telegram: {tg_nick}</a>\n" \
+           "<a href='https://github.com/{github_nick}'>Github: {github_nick}</a>\n" \
+           "Email: {email}\n".format(**user)
 
 
 def get_project_by_id(id):

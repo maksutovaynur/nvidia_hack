@@ -1,4 +1,5 @@
 from telebot.types import CallbackQuery, Message
+from telebot import TeleBot
 
 from .tags import extract_head_tags
 from ..functions import FakeFunctions
@@ -13,7 +14,7 @@ def cmd_get_random_person(bot, chat_id):
     )
 
 
-def resp_search_people(bot):
+def resp_search_people(bot: TeleBot):
     def f(query: CallbackQuery):
         msg: Message = query.message.reply_to_message
         head, initial_tags = extract_head_tags(msg.text)
@@ -21,7 +22,7 @@ def resp_search_people(bot):
         print(people)
         bot.send_message(msg.chat.id, text="Found people:")
         for person in people:
-            bot.send_message(msg.chat.id, text=person)
+            bot.send_message(msg.chat.id, text=person, parse_mode="HTML")
     return f
 
 

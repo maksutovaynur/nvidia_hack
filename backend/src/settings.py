@@ -13,3 +13,5 @@ PERSON_SKILL_PATH = join(SRC_DIR, "person_skills.json")
 PROJECT_DF_PATH = join(SRC_DIR, "projects.csv")
 PROJECT_TAG_PATH = join(SRC_DIR, "project_tags.json")
 
+IMG_DIR = join(SRC_DIR, "profile_avatars")
+
