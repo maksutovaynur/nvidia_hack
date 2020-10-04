@@ -38,9 +38,9 @@ def tags_reply_markup(tags, txt_f=lambda t: t, clb_f=lambda t: t):
 
 def repair_tags(bot, msg: Message, head, tags):
     kb = tags_reply_markup(
-            tags,
-            txt_f=lambda t: f"{t} \u274C",
-            clb_f=lambda t: f"{CallbackNames.RM_TAG.value} {t}"
+        tags,
+        txt_f=lambda t: f"{t} \u274C",
+        clb_f=lambda t: f"{CallbackNames.RM_TAG.value} {t}"
     )
     bot.edit_message_text(
         chat_id=msg.chat.id,
@@ -57,6 +57,7 @@ def resp_add_tag(bot):
         tags = add_tag(initial_tags, query.data.split(" ", 1)[-1])
         if len(tags) != len(initial_tags):
             repair_tags(bot, msg, head, tags)
+
     return f
 
 
@@ -67,6 +68,7 @@ def resp_rm_tag(bot):
         tags = rm_tag(initial_tags, query.data.split(" ", 1)[-1])
         if len(tags) != len(initial_tags):
             repair_tags(bot, msg, head, tags)
+
     return f
 
 
@@ -81,6 +83,3 @@ def cmd_create_search_tags(bot, chat_id, tags, selected_head, all_head, add_key=
         reply_markup=kb,
         reply_to_message_id=msg.message_id
     )
-
-
-

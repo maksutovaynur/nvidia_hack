@@ -2,14 +2,14 @@ import telebot
 from telebot.types import Message, InlineKeyboardButton
 
 from . import settings as S
+from .back_modules import get_all_users_tags, get_all_projects_tags
 from .commands import CallbackNames, CommandNames
 from .commands.common import cmd_help
-from .commands.tags import resp_add_tag, resp_rm_tag, \
-    cmd_create_search_tags
 from .commands.person_card import cmd_get_random_person, \
     resp_search_people, resp_search_projects, cmd_get_random_project
+from .commands.tags import resp_add_tag, resp_rm_tag, \
+    cmd_create_search_tags
 
-from .back_modules import get_all_users_tags, get_all_projects_tags
 log = print
 
 bot = telebot.TeleBot(S.BOT_TOKEN)

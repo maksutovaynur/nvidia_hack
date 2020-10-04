@@ -1,5 +1,5 @@
-from telebot.types import CallbackQuery, Message
 from telebot import TeleBot
+from telebot.types import CallbackQuery, Message
 
 from .tags import extract_head_tags
 from ..back_modules import find_user_ids_by_tags, \
@@ -40,6 +40,7 @@ def resp_search_people(bot: TeleBot):
                 caption=person,
                 parse_mode="HTML",
             )
+
     return f
 
 
@@ -51,4 +52,5 @@ def resp_search_projects(bot):
         bot.send_message(msg.chat.id, text="Found projects:")
         for project in projects:
             bot.send_message(msg.chat.id, text=project, parse_mode="HTML")
+
     return f
