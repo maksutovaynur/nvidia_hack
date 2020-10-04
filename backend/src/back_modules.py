@@ -1,7 +1,6 @@
 import json
 import numpy as np
 import pandas as pd
-from random import choice
 from . import settings as S
 
 
@@ -58,19 +57,19 @@ def find_projects_through_tags(tag_lst, top_N):
 
 #7
 def get_user_info_by_id(user_id):
-    row = person_df.iloc[user_id].values
-    user_dct = row.to_dict() #{}
-    # user_dct['user_id'] = row[0]
-    # user_dct['full_name'] = row[1]
-    # user_dct['gender'] = row[2]
-    # user_dct['photo_path'] = row[3]
-    # user_dct['telegram_nickname'] = row[4]
-    # user_dct['position'] = row[5]
-    # user_dct['github_nickname'] = row[6]
-    # user_dct['email'] = row[7]
+    row = person_df.iloc[user_id] #.values
+    user_dct = row.to_dict()
     user_dct['skills_tags'] = person_skills_json[str(user_id)]
     return user_dct
 
+
+def serialize_user(user):
+    if user["github_nick"][0] == '@':
+        user["github_nick"] = user["github_nick"][1:]
+    return "{full_name}\n" \
+        "Telegram: {tg_nick}\n" \
+        "Github: https://github.com/{github_nick}\n" \
+           "Email: {email}".format(**user)
 
 
 def get_project_by_id(id):
