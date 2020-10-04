@@ -5,6 +5,7 @@ class CommandNames(enum.Enum):
     SEARCH_PERSON = "/search_person"
     SEARCH_PROJECT = "/search_project"
     RANDOM_LUNCH = "/random_lunch"
+    RANDOM_PROJECT = "/random_project"
     HELP = "/help"
 
 

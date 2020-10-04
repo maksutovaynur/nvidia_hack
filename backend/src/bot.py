@@ -6,7 +6,8 @@ from .commands import CallbackNames, CommandNames
 from .commands.common import cmd_help
 from .commands.tags import resp_add_tag, resp_rm_tag, \
     cmd_create_search_tags
-from .commands.person_card import cmd_get_random_person, resp_search_people, resp_search_projects
+from .commands.person_card import cmd_get_random_person, \
+    resp_search_people, resp_search_projects, cmd_get_random_project
 
 from .back_modules import get_all_users_tags, get_all_projects_tags
 log = print
@@ -22,7 +23,7 @@ def root(message: Message):
     if t == "/start":
         bot.send_message(
             chat_id,
-            text="Welcome to Nvidia Tinder"
+            text="Welcome to NAME - Networking Assistant for Managers and Employees"
         )
         cmd_help(bot, chat_id)
     elif t == CommandNames.SEARCH_PERSON.value:
@@ -51,6 +52,8 @@ def root(message: Message):
         )
     elif t == CommandNames.RANDOM_LUNCH.value:
         cmd_get_random_person(bot, chat_id)
+    elif t == CommandNames.RANDOM_PROJECT.value:
+        cmd_get_random_project(bot, chat_id)
     elif t == CommandNames.HELP.value:
         cmd_help(bot, chat_id)
     else:

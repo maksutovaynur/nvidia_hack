@@ -7,6 +7,7 @@ HelpMessages = {
     CommandNames.SEARCH_PERSON.value: "🔎 Find suitable people 👤",
     CommandNames.SEARCH_PROJECT.value: "🔎 Find interesting projects 📂",
     CommandNames.RANDOM_LUNCH.value: "🤔 Have a lunch with random person?",
+    CommandNames.RANDOM_PROJECT.value: "Investigate random project",
     CommandNames.HELP.value: "Show this help message again",
 }
 
@@ -18,7 +19,7 @@ help_text = "\n".join(
 )
 
 
-km = ReplyKeyboardMarkup(row_width=1)
+km = ReplyKeyboardMarkup(row_width=2)
 km.add(*(KeyboardButton(cmd.value) for cmd in CommandNames))
 
 
