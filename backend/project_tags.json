@@ -1,0 +1,207 @@
+{
+    "0": [
+        "deep-learning",
+        "yolov3",
+        "object-detection",
+        "pytorch",
+        "training",
+        "training",
+        "yolo",
+        "augmentation",
+        "inference",
+        "darknet",
+        "onnx",
+        "coremlios"
+    ],
+    "1": [
+        "fgvc-aircraft",
+        "fine-grained",
+        "cub-200-2011",
+        "stanford-cars",
+        "fine-grained-classification",
+        "weakly-supervised-localization"
+    ],
+    "2": [
+        "deep-learning",
+        "nlp",
+        "keras",
+        "ner",
+        "text-classification",
+        "sequence-labeling"
+    ],
+    "3": [
+        "batch-script",
+        "wattmeter",
+        "nvidia-gpu",
+        "nvidia-gpus",
+        "nvidia-smi"
+    ],
+    "4": [
+        "scale-out",
+        "high-performance",
+        "commodity-hardware",
+        "erasure-coding",
+        "map-reduce",
+        "object-storage deep-learning"
+    ],
+    "5": [
+        "gpu-memory",
+        "nvidia",
+        "kernel-mode-driver",
+        "gpudirect-rdma",
+        "libraries",
+        "linux"
+    ],
+    "6": [
+        "neural-network",
+        "computer-vision",
+        "sparse-tensors",
+        "convolutional-neural-networks",
+        "semantic-segmentation",
+        "auto-differentiation",
+        "spatio-temporal-analysis",
+        "space-timedeep-learning",
+        "high-dimensional-data",
+        "high-dimensional-inference",
+        "trilateral-filter",
+        "3d-vision",
+        "sparse-convolution",
+        "pytorch",
+        "minkowski-engine",
+        "cuda",
+        "sparse-tensor-network"
+    ],
+    "7": [
+        "docker",
+        "hpc",
+        "containers",
+        "singularity"
+    ],
+    "8": [
+        "tensorrt",
+        "nvidia",
+        "deep-learning"
+    ],
+    "9": [
+        "nvidia-docker",
+        "nvidia-gpus",
+        "containers",
+        "deep-learning"
+    ],
+    "10": [
+        "tensorflow",
+        "tar",
+        "tfrecord",
+        "golang",
+        "tfexample",
+        "datapipeline"
+    ],
+    "11": [
+        "gan",
+        "deep-learning",
+        "deep-neural-networks",
+        "pytorch",
+        "pix2pix",
+        "image-to-image-translation",
+        "generative-adversarial-network",
+        "computer-vision",
+        "computer-graphics"
+    ],
+    "12": [
+        "computer-vision",
+        "deep-learning",
+        "synthetic-dataset-generation",
+        "domain-randomization",
+        "pose-estimation",
+        "object-detection"
+    ],
+    "13": [
+        "object-detection",
+        "pytorch",
+        "apex",
+        "computer-vision",
+        "deep-learning"
+    ],
+    "14": [
+        "deeplearning",
+        "optical-flow",
+        "computer-vision",
+        "pytorch",
+        "caffe",
+        "cvpr",
+        "pwc-net"
+    ],
+    "15": [
+        "re-identification",
+        "person-reidentification",
+        "person-reid",
+        "image-search",
+        "pytorch",
+        "apex"
+    ],
+    "16": [
+        "tensorflow",
+        "deep-learning",
+        "machine-learning",
+        "computer-vision",
+        "deep-neural-networks"
+    ],
+    "17": [
+        "tensorflow",
+        "3d-reconstruction",
+        "nvidia",
+        "surface-reconstruction",
+        "3d",
+        "computer-vision"
+    ],
+    "18": [
+        "tensorflow",
+        "model-compression",
+        "model-pruning",
+        "deep-neural-networks"
+    ],
+    "19": [
+        "gan",
+        "deep-learning",
+        "image-translation",
+        "pytorch"
+    ],
+    "20": [
+        "tensorflow",
+        "action-detection",
+        "action-recognition",
+        "apex",
+        "video-understanding",
+        "activity-recognition"
+    ],
+    "21": [
+        "deep-learning",
+        "3d",
+        "point-cloud",
+        "cvpr2018",
+        "pytorch"
+    ],
+    "22": [
+        "computer-vision",
+        "segmentation",
+        "pytorch"
+    ],
+    "23": [
+        "computer-vision",
+        "cuda",
+        "pytorch",
+        "autoencoder"
+    ],
+    "24": [
+        "computer-vision",
+        "cuda",
+        "pytorch",
+        "autoencoder",
+        "re-identification",
+        "multi-task learning"
+    ],
+    "25": [
+        "tensorflow",
+        "image-classification"
+    ]
+}
